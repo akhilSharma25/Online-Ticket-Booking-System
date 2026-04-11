@@ -15,7 +15,7 @@ public class TicketControllerAdvice {
     public ResponseEntity<ErrorMsg> handleTouristException(TicketNotFoundException e){
 
         ErrorMsg errorDetail =new ErrorMsg("404 not found",e.getMessage(), LocalDateTime.now());
-        return  new ResponseEntity<ErrorMsg>(errorDetail, HttpStatus.BAD_REQUEST);
+        return  new ResponseEntity<ErrorMsg>(errorDetail, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)

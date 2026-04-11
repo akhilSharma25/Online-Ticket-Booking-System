@@ -29,20 +29,38 @@ Optional<Ticket>optional = repo.findById(id);
 if(optional.isPresent()){
     return optional.get();
 }else{
-    throw new TicketNotFoundException("Ticket Not Found for this id : "+id);
+    throw new TicketNotFoundException("Ticket Not Found for this ticketId : "+id);
 }
     }
 
     @Override
     public String cancelTicket(Integer id) {
-        repo.deleteById(id);
-        return "Ticket Cancel Successfully";
+        Optional<Ticket>optional =repo.findById(id);
+        if(optional.isPresent()){
+           Ticket ticket= optional.get();
+           ticket.setStatus("Cancel");
+
+            repo.save(ticket);
+            return "Ticket Cancel Successfully";
+
+        }
+else{
+            throw new TicketNotFoundException("Ticket Not Found for this ticketId : "+id);
+
+        }
     }
 
     @Override
     public String updateTicketDetails(Ticket ticket) {
-        repo.save(ticket);
-        return "Ticket Updated Successfully";
+        Optional<Ticket>optional =repo.findById(ticket.getTicketId());
+        if(optional.isPresent()) {
+            repo.save(ticket);
+            return "Ticket Updated Successfully";
+        }else{
+            throw new TicketNotFoundException("Ticket Not Found for this ticketId");
+
+        }
+
     }
 
     @Override
