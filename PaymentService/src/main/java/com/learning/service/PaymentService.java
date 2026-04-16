@@ -29,7 +29,7 @@ public class PaymentService implements IPaymentService {
             pay.setTransactionId(randomId);
         }
 
-        String status = (Math.random() > 0.4) ? "Success" : "Failed";
+        String status = (Math.random() > 0.6) ? "Success" : "Failed";
         pay.setPaymentStatus(status);
 
         // Save ek hi baar

@@ -18,6 +18,7 @@ public class TicketController {
 
     @PostMapping("/book-ticket")
     public ResponseEntity<Integer> generateTicket(@RequestBody Ticket ticket){
+
         Integer id=service.bookTicket(ticket);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
