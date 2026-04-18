@@ -30,7 +30,8 @@ public class TicketService implements ITicketService{
 
         Payment payment=new Payment();
         payment.setTicketId(ticket1.getTicketId());
-        payment.setAmount(Math.random()*1000);
+//        payment.setAmount(Math.random()*1000);
+        payment.setAmount(ticket1.getTotal_price());
         payment.setPaymentDate(LocalDateTime.now().toString());
 
         Map<String, String> response= restTemplate.postForEntity(url,payment, Map.class).getBody();
